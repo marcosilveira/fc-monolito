@@ -4,15 +4,15 @@ import FindAllProductsUsecase from "../usecase/find-all-products/find-all-produc
 import FindProductUseCase from "../usecase/find-product/find-product.usecase";
 
 export default class StoreCatalogFacadeFactory {
-  static create(): StoreCatalogFacade {
-    const productRepository = new ProductRepository();
-    const findUseCase = new FindProductUseCase(productRepository);
-    const findAllUseCase = new FindAllProductsUsecase(productRepository);
-
-    const facade = new StoreCatalogFacade({
-      findUseCase: findUseCase,
-      findAllUseCase: findAllUseCase,
-    });
-    return facade;
-  }
+    public static create(): StoreCatalogFacade {
+        const productRepository = new ProductRepository();
+        const findProductUseCase = new FindProductUseCase(productRepository);
+        const findAllProductUseCase = new FindAllProductsUsecase(productRepository);
+        const storeCatalogFacade = new StoreCatalogFacade({
+            findUseCase: findProductUseCase,
+            findAllUseCase: findAllProductUseCase,
+        });
+        return storeCatalogFacade;
+        
+    }
 }
